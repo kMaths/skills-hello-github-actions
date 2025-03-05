@@ -1,6 +1,14 @@
+#Name that appears in the Actions tab of you repository
 name: Post welcome comment
+# indicates your workflow will execute whenever someone opens a pull request in your repository
 on:
   pull_request:
     types: [opened]
+#Assignes the workflow permissions to operate on the repository
 permissions:
+  #Give the workflow permission to write to pull requests. Needed to create the welcome comment
   pull-requests: write
+jobs:
+  build:
+    name: Post welcome comment
+    runs-on: ubuntu-latest
