@@ -12,3 +12,11 @@ jobs:
   build:
     name: Post welcome comment
     runs-on: ubuntu-latest
+    steps:
+      #Uses github CLI (gh) to add a comment when a pull request is open
+      - run: gh pr comment $PR_URL --body "Welcome to the repository!"
+        env: 
+          #Allows GLI to post a comment using environment variable secret, which is an installation access token created when the workflow runs
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          #Set to url of the newly created pull request and used in the gh command
+          PR_URL: ${{ github.event.pull_request.html_url}}
